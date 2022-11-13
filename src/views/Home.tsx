@@ -1,61 +1,20 @@
-import {
-    DesktopOutlined,
-    FileOutlined,
-    PieChartOutlined,
-    TeamOutlined,
-    UserOutlined,
-} from '@ant-design/icons';
-import type { MenuProps } from 'antd';
-import { Breadcrumb, Layout, Menu } from 'antd';
+import { Breadcrumb, Layout } from 'antd';
 import React, { useState } from 'react';
-import { useNavigate, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
+import MainMenu from '@/components/MainMenu'
 
 const { Header, Content, Footer, Sider } = Layout;
 
-type MenuItem = Required<MenuProps>['items'][number];
-
-function getItem(
-    label: React.ReactNode,
-    key: React.Key,
-    icon?: React.ReactNode,
-    children?: MenuItem[],
-): MenuItem {
-    return {
-        key,
-        icon,
-        children,
-        label,
-    } as MenuItem;
-}
-
-const items: MenuItem[] = [
-    getItem('Option 1', '/page1', <PieChartOutlined />),
-    getItem('Option 2', '/page2', <DesktopOutlined />),
-    getItem('User', 'sub1', <UserOutlined />, [
-        getItem('Tom', '3'),
-        getItem('Bill', '4'),
-        getItem('Alex', '5'),
-    ]),
-    getItem('Team', 'sub2', <TeamOutlined />, [getItem('Team 1', '6'), getItem('Team 2', '8')]),
-    getItem('Files', '9', <FileOutlined />),
-];
-
 const View: React.FC = () => {
     const [collapsed, setCollapsed] = useState(false);
-    const navigateTo = useNavigate()
-
-    const menuClick = (e: { key: string }) => {
-        //点击跳转到对应的路由  
-        console.log(e.key);
-        navigateTo(e.key);
-    }
 
     return (
         <Layout style={{ minHeight: '100vh' }}>
             {/* 左侧边栏 */}
             <Sider collapsible collapsed={collapsed} onCollapse={value => setCollapsed(value)}>
                 <div className="logo" />
-                <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} onClick={menuClick} />
+                {/* 菜单栏导航栏 */}
+                <MainMenu></MainMenu>
             </Sider>
 
             {/* 右边主体 */}
@@ -70,7 +29,7 @@ const View: React.FC = () => {
                 </Header>
                 {/* 右边内容 */}
                 <Content style={{ margin: '16px 16px 0' }} className="site-layout-background">
-                    {/* 窗口部分 */}                         
+                    {/* 窗口部分 */}
                     <Outlet ></Outlet>
                 </Content>
                 {/* 右边底部 */}
