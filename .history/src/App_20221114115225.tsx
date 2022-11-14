@@ -7,18 +7,12 @@ function ToPage1() {
 
   useEffect(() => {
     // 加载完执行
-    navigateTo("/page1")
+
   }, [])
   return <div></div>
 }
 
 function ToLogin() {
-  const navigateTo = useNavigate()
-
-  useEffect(() => {
-    // 加载完执行
-    navigateTo("/login")
-  }, [])
   return <div></div>
 }
 
@@ -34,11 +28,11 @@ function BeforeRouterEnter() {
   const location = useLocation()
   let token = localStorage.getItem("token")
   if (location.pathname === "/login" && token) {
-    return <ToPage1 />
+    return ToPage1()
   }
 
   if (location.pathname !== "/login" && !token) {
-    return <ToLogin />
+    return ToLogin()
   }
 
   return outlet;
@@ -46,7 +40,7 @@ function BeforeRouterEnter() {
 
 function App() {
 
-  // const outlet = useRoutes(router)
+  const outlet = useRoutes(router)
 
   return (
     <div className="App">

@@ -1,14 +1,6 @@
 import loginStyles from './login.module.scss';
-import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
-    const navigateTo = useNavigate()
-
-    const loginSubmit = () => {
-        localStorage.setItem('token', '1212')
-        navigateTo('/page1')
-    }
-
     return (
         <div className={loginStyles.loginContainer}>
             <div className={loginStyles.login}>
@@ -19,7 +11,7 @@ export default function Login() {
                 <div className={loginStyles.login_box}>
                     <input type="password" required /><label>密码</label>
                 </div>
-                <a href="javascript:void(0)" onClick={loginSubmit}>
+                <a href="javascript:void(0)" onClick={loginSu}>
                     登录
                     <span></span>
                     <span></span>

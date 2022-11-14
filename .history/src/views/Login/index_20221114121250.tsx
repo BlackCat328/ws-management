@@ -5,7 +5,7 @@ export default function Login() {
     const navigateTo = useNavigate()
 
     const loginSubmit = () => {
-        localStorage.setItem('token', '1212')
+        local
         navigateTo('/page1')
     }
 

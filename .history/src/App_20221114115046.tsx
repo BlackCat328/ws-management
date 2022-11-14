@@ -1,24 +1,11 @@
-import { useEffect } from 'react';
-import { useRoutes, useLocation, useNavigate } from 'react-router-dom';
+import { useRoutes, useLocation } from 'react-router-dom';
 import router from './router';
 
 function ToPage1() {
-  const navigateTo = useNavigate()
-
-  useEffect(() => {
-    // 加载完执行
-    navigateTo("/page1")
-  }, [])
   return <div></div>
 }
 
 function ToLogin() {
-  const navigateTo = useNavigate()
-
-  useEffect(() => {
-    // 加载完执行
-    navigateTo("/login")
-  }, [])
   return <div></div>
 }
 
@@ -34,11 +21,11 @@ function BeforeRouterEnter() {
   const location = useLocation()
   let token = localStorage.getItem("token")
   if (location.pathname === "/login" && token) {
-    return <ToPage1 />
+    return ToPage1()
   }
 
   if (location.pathname !== "/login" && !token) {
-    return <ToLogin />
+    return ToPage1()
   }
 
   return outlet;
@@ -46,7 +33,7 @@ function BeforeRouterEnter() {
 
 function App() {
 
-  // const outlet = useRoutes(router)
+  const outlet = useRoutes(router)
 
   return (
     <div className="App">

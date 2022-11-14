@@ -2,11 +2,10 @@ import loginStyles from './login.module.scss';
 import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
-    const navigateTo = useNavigate()
+    
 
     const loginSubmit = () => {
-        localStorage.setItem('token', '1212')
-        navigateTo('/page1')
+
     }
 
     return (

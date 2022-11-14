@@ -46,7 +46,7 @@ function BeforeRouterEnter() {
 
 function App() {
 
-  // const outlet = useRoutes(router)
+  const outlet = useRoutes(router)
 
   return (
     <div className="App">
